@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "requests")
 public class Request {
@@ -32,4 +34,12 @@ public class Request {
 
 	public Params getParams() { return params; }
 	public void setParams(Params params) { this.params = params; }
+
+	@PrePersist
+	@PreUpdate
+	private void syncTypeFromParams() {
+		if (this.params != null) {
+			this.type = this.params.getClass().getSimpleName();
+		}
+	}
 }
