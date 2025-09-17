@@ -1,23 +1,13 @@
 package com.example.app.request;
 
-public class Params {
-	// Define arbitrary fields later; stored as JSONB in DB
-	private String name;
-	private String path;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+	@JsonSubTypes.Type(value = CreateAccountParams.class, name = "CREATE_ACCOUNT"),
+	@JsonSubTypes.Type(value = PlaceOrderParams.class, name = "PLACE_ORDER"),
+	@JsonSubTypes.Type(value = SendEmailParams.class, name = "SEND_EMAIL")
+})
+public abstract class Params {
 }
