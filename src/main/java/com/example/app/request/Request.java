@@ -1,6 +1,8 @@
 package com.example.app.request;
 
 import jakarta.persistence.*;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "requests")
@@ -12,7 +14,8 @@ public class Request {
 	@Column(nullable = false)
 	private String type;
 
-	@Embedded
+	@Type(JsonType.class)
+	@Column(columnDefinition = "jsonb")
 	private Params params;
 
 	public Request() {}

@@ -1,8 +1,5 @@
 package com.example.app.request;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class Params {
-	// Add fields later as needed
+	// Define arbitrary fields later; stored as JSONB in DB
 }
