@@ -1,11 +1,4 @@
--- Create table if it does not exist (matches JPA entity)
-CREATE TABLE IF NOT EXISTS public.requests (
-  id BIGSERIAL PRIMARY KEY,
-  type VARCHAR(255) NOT NULL,
-  params JSONB
-);
-
--- Seed sample data
+-- Seed sample data only; table creation is handled by the application (JPA)
 INSERT INTO public.requests (type, params) VALUES
   ('CREATE_ACCOUNT', '{"email":"user1@example.com","plan":"FREE"}'),
   ('PLACE_ORDER', '{"items":[{"sku":"A1","qty":2},{"sku":"B3","qty":1}],"total":39.97}'),
