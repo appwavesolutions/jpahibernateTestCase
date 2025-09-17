@@ -1,7 +1,6 @@
 package com.example.app.request;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "requests")
@@ -11,26 +10,23 @@ public class Request {
 	private Long id;
 
 	@Column(nullable = false)
-	private String title;
+	private String type;
 
-	@Column(length = 4000)
-	private String details;
-
-	@Column(nullable = false)
-	private LocalDateTime createdAt = LocalDateTime.now();
+	@Embedded
+	private Params params;
 
 	public Request() {}
 
-	public Request(String title, String details) {
-		this.title = title;
-		this.details = details;
+	public Request(String type, Params params) {
+		this.type = type;
+		this.params = params;
 	}
 
 	public Long getId() { return id; }
-	public String getTitle() { return title; }
-	public void setTitle(String title) { this.title = title; }
-	public String getDetails() { return details; }
-	public void setDetails(String details) { this.details = details; }
-	public LocalDateTime getCreatedAt() { return createdAt; }
-	public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+	public String getType() { return type; }
+	public void setType(String type) { this.type = type; }
+
+	public Params getParams() { return params; }
+	public void setParams(Params params) { this.params = params; }
 }
