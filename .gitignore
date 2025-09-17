@@ -1,0 +1,13 @@
+/build/
+/out/
+/.gradle/
+/gradle/
+.gradle/
+!gradle/wrapper/**
+!.gradle/gradle-wrapper.properties
+**/.idea/**
+**/.project
+**/.classpath
+**/.settings/**
+**/.DS_Store
+*.log
